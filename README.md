@@ -47,13 +47,50 @@ gem install rails
 rails -v
 ```
 
+**Working with the existing database**
+
+Firstly I am creating this application with the sakila_dump.sql file, which you can get from here: https://github.com/archerydwd/ror_sakila/blob/master/sakila_dump.sql. Its included in the source for this repository.
+
+**Install mysql**
+
+We are going to be using mysql for this database. If you don't have it, please install it:
+
+Using HomeBrew:
+
+```
+brew update
+brew doctor
+brew upgrade
+brew install mysql
+```
+
+**Create the database**
+
+To create the database, we need to login and enter a few commands. Please note, if this is your first time using mysql, the first time you login and enter a password, this acts as setting a password. If you don't want to set a password (bad idea) just hit enter when it requests the password.
+
+```
+mysql -u root -p
+create database ror_sakila
+use database ror_sakila
+
+source PATH/TO/sakila_dump.sql
+```
+
+Then to check that this has indeed worked, you can enter the following command and you should see a list of the tables in the database:
+
+```
+show tables;
+```
+
+###Building the ror_sakila application
+
 **Create the ror_sakila app**
 ```
-rails new ror_sakila
+rails new ror_sakila -d mysql
 cd blog
 ```
 
-###Building the application
+The -d flag sets the application to use mysql as the database.
 
 **Starting the development server**
 
@@ -67,7 +104,95 @@ To stop the development server:
 ctrl + c
 ```
 
-**Working with the existing database**
+**Point the app to the database**
 
-Firstly I am creating this application with the sakila_dump.sql file, which you can get from here: 
+Edit: config/databases.yml
 
+Change database to ror_sakila under the development header.
+
+```
+development:
+  <<: *default
+  database: ror_sakila
+```
+
+Change the username to root (or whatever username you have set up) and the password to secret under the default header:
+
+```
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password: secret
+  socket: /tmp/mysql.sock
+```
+
+**Generate the database schema**
+
+Ok, we now want to generate a database schema. We are doing this to prove that the app is connecting to the database and to provide a schema for our scaffold to use. 
+Scaffold is a gem that simply produces the generator commands that we need in order to build the application. It uses the database schema in order to do this (this really is just a time saver so we don't have to look at the table names and get the field names etc..). This is the best way to build an application for an existing database that I have found.
+
+Install the gem for schema_to_scafford.
+
+```
+gem install schema_to_scaffold
+```
+
+Then once this is installed, we can simply type:
+
+```
+scaffold
+```
+
+It will produce generator commands for us to use. Copy these commands to a text file and input them one at a time into the terminal (inside your applications directory).
+
+**Create a home controller and index page**
+
+Now we need to provide a page that links the others that the generator created together.
+
+```
+rails generate controller home index
+```
+
+Then edit: app/views/home/index.html.erb
+
+```
+<h1>Index page</h1>
+<ul>
+  <li><%= link_to 'Actors', actors_path %></li>
+  <li><%= link_to 'Addresses', addresses_path %></li>
+  <li><%= link_to 'Categories', categories_path %></li>
+  <li><%= link_to 'Cities', cities_path %></li>
+  <li><%= link_to 'Countries', countries_path %></li>
+  <li><%= link_to 'Customers', customers_path %></li>
+  <li><%= link_to 'Film Texts', filmtexts_path %></li>
+  <li><%= link_to 'Films', films_path %></li>
+  <li><%= link_to 'Inventories', inventories_path %></li>
+  <li><%= link_to 'Languages', languages_path %></li>
+  <li><%= link_to 'Payments', payments_path %></li>
+  <li><%= link_to 'Rentals', rentals_path %></li>
+  <li><%= link_to 'Staffs', staffs_path %></li>
+  <li><%= link_to 'Stores', stores_path %></li>
+</ul>
+```
+
+Then we need to set the root route to the home/index page, so edit: config/routes.rb and enter:
+
+```
+root 'home#index'
+```
+
+Start the development server:
+
+```
+rails server
+```
+
+You can now navigate to: http://localhost:3000/ and you should see the index page with links to all the other pages.
+
+**The End**
+
+Thanks for reading, hope you learned something. :)
+
+Darren.
