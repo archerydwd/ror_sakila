@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Film:</strong>
+  <%= @film_category.film %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @film_category.category %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @film_category.last_update %>
+</p>
+
+<%= link_to 'Edit', edit_film_category_path(@film_category) %> |
+<%= link_to 'Back', film_categories_path %>

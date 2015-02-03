@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  city: MyString
+  country_id: 
+  last_update: 2015-01-28 13:53:08
+
+two:
+  city: MyString
+  country_id: 
+  last_update: 2015-01-28 13:53:08

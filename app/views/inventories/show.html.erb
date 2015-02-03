@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Film:</strong>
+  <%= @inventory.film %>
+</p>
+
+<p>
+  <strong>Store:</strong>
+  <%= @inventory.store %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @inventory.last_update %>
+</p>
+
+<%= link_to 'Edit', edit_inventory_path(@inventory) %> |
+<%= link_to 'Back', inventories_path %>

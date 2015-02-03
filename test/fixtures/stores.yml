@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  manager_staff_id: 
+  address_id: 
+  last_update: 2015-01-28 13:54:10
+
+two:
+  manager_staff_id: 
+  address_id: 
+  last_update: 2015-01-28 13:54:10

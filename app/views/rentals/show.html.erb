@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Rental date:</strong>
+  <%= @rental.rental_date %>
+</p>
+
+<p>
+  <strong>Inventory:</strong>
+  <%= @rental.inventory %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @rental.customer %>
+</p>
+
+<p>
+  <strong>Return date:</strong>
+  <%= @rental.return_date %>
+</p>
+
+<p>
+  <strong>Staff:</strong>
+  <%= @rental.staff %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @rental.last_update %>
+</p>
+
+<%= link_to 'Edit', edit_rental_path(@rental) %> |
+<%= link_to 'Back', rentals_path %>

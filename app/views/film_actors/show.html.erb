@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Actor:</strong>
+  <%= @film_actor.actor %>
+</p>
+
+<p>
+  <strong>Film:</strong>
+  <%= @film_actor.film %>
+</p>
+
+<p>
+  <strong>Last update:</strong>
+  <%= @film_actor.last_update %>
+</p>
+
+<%= link_to 'Edit', edit_film_actor_path(@film_actor) %> |
+<%= link_to 'Back', film_actors_path %>

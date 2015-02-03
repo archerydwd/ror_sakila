@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  rental_date: 2015-01-28 13:53:56
+  inventory_id: 
+  customer_id: 
+  return_date: 2015-01-28 13:53:56
+  staff_id: 
+  last_update: 2015-01-28 13:53:56
+
+two:
+  rental_date: 2015-01-28 13:53:56
+  inventory_id: 
+  customer_id: 
+  return_date: 2015-01-28 13:53:56
+  staff_id: 
+  last_update: 2015-01-28 13:53:56

@@ -1,0 +1,27 @@
+<h1>Listing filmtexts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @filmtexts.each do |filmtext| %>
+      <tr>
+        <td><%= filmtext.title %></td>
+        <td><%= filmtext.description %></td>
+        <td><%= link_to 'Show', filmtext %></td>
+        <td><%= link_to 'Edit', edit_filmtext_path(filmtext) %></td>
+        <td><%= link_to 'Destroy', filmtext, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Filmtext', new_filmtext_path %>
