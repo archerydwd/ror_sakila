@@ -194,7 +194,76 @@ rails server
 
 You can now navigate to: http://localhost:3000/ and you should see the index page with links to all the other pages.
 
-**The End**
+###Getting Production Ready
+
+The following changes must be made in order to have the application in a production environment ready state.
+
+**Add A Secret Key**
+
+We need to add a secret key for production mode, this can be done by changing directory to the railsblog and running the following command:
+
+```
+rake secret
+```
+
+If this does not work, then please run:
+
+```
+bundle exec rake secret
+```
+
+The above command will produce a secret key. Copy this key and place it in as a production key in: config/secrets.yml
+
+```
+development:
+  secret_key_base: 05215a3d1a1dd8648f7c6ee3c333778e5c99cb9115fdf313f1ee79b276008dd32d36817dc60bded89d3eb7d679797096758ae2667c08ff756e234851016296ed
+
+test:
+  secret_key_base: 5b3e49d01fe19e183c7c5d4a758352071cf581d1192f9c3c137f99e8c383436f3cc99893bf1fb34a8140c17cfdebfce67e44ea64ba25c85cdee8cb72d5a9512f
+
+production:
+  secret_key_base: 5ec6914064c1f8ebf3fe3e0ccb29351240db088138e68462f2067582066a3e6bba48792b41ec22193567893f5638a564f9c44a6bdceeb9083ba6b6f74ae0eba8
+```
+
+In the normal use case this secret key should be placed in an environment variable and read in here. For us this is not necessary as we are not deploying a release of the application.
+
+**Change The Production Database**
+
+In the normal development use case you should have a seperate database for development, testing and production. In our example we can use the development database for production as we are not building a product for general release but rather for testing purposes. In saying that we now need to rename the production database to our mysql database, as per the following: config/database.yml:
+
+```
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  username: root
+  password:
+  socket: /tmp/mysql.sock
+
+development:
+  <<: *default
+  database: ror_sakila
+  
+test:
+  <<: *default
+  database: ror_sakila
+  
+production:
+  <<: *default
+  database: ror_sakila
+  username: root
+  password: ''
+```
+
+**How To Run In Production Mode**
+
+To start the app in the production mode issue the command:
+
+```
+rails s -e production
+```
+
+###The End
 
 Thanks for reading, hope you learned something. :)
 
