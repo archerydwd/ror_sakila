@@ -89,7 +89,9 @@ Then to check that this has indeed worked, you can enter the following command a
 show tables;
 ```
 
+==
 ###Building the ror_sakila application
+==
 
 **Create the ror_sakila app**
 ```
@@ -198,7 +200,9 @@ rails server
 
 You can now navigate to: http://localhost:3000/ and you should see the index page with links to all the other pages.
 
+==
 ###Getting Production Ready
+==
 
 The following changes must be made in order to have the application in a production environment ready state.
 
@@ -267,7 +271,9 @@ To start the app in the production mode issue the command:
 rails s -e production
 ```
 
+==
 ###The End
+==
 
 Thanks for reading, hope you learned something. :)
 
