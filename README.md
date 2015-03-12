@@ -11,9 +11,8 @@ I am going to be performing tests on this app using some load testing tools such
 Once I have tested this application and the other verisons of it, I will publish the results, which can then be used as a benchmark for others when trying to choose a framework. 
 You can build this app using a framework of your choosing and then follow the testing mechanisms that I will describe and then compare the results against my benchmark to get an indication of performance levels of your chosen framework.
 
-==
+=
 ###Installing Ruby and Rails
-==
 
 At time of writing this the Ruby version was: 2.2.0 and the rails version was: 4.2.0.
 
@@ -52,9 +51,8 @@ gem install rails
 rails -v
 ```
 
-==
+=
 ###Working with the existing database
-==
 
 Firstly I am creating this application with the sakila_dump.sql file, which you can get from here: https://github.com/archerydwd/ror_sakila/blob/master/sakila_dump.sql. Its included in the source for this repository.
 
@@ -109,9 +107,8 @@ Then to check that this has indeed worked, you can enter the following command a
 show tables;
 ```
 
-==
+=
 ###Building the ror_sakila application
-==
 
 **Create the ror_sakila app**
 ```
@@ -245,9 +242,8 @@ bundle install
 
 Now try again.
 
-==
+=
 ###Getting Production Ready
-==
 
 The following changes must be made in order to have the application in a production environment ready state.
 
@@ -316,9 +312,8 @@ To start the app in the production mode issue the command:
 rails s -e production
 ```
 
-==
+=
 ###The End
-==
 
 Thanks for reading, hope you learned something. :)
 
