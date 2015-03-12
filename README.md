@@ -116,7 +116,7 @@ show tables;
 **Create the ror_sakila app**
 ```
 rails new ror_sakila -d mysql
-cd blog
+cd ror_sakila
 ```
 
 The -d flag sets the application to use mysql as the database.
