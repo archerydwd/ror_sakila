@@ -137,15 +137,21 @@ ctrl + c
 
 Edit: config/databases.yml
 
-Change database to ror_sakila under the development header.
-
+Change database to ror_sakila under the development & production headers, as we are not actually deploying this app, so there is no need for two seperate databases. We will also change the production username to root and the password to password.
 ```
 development:
   <<: *default
   database: ror_sakila
+  
+production:
+  <<: *default
+  database: ror_sakila
+  username: root
+  password: password
+
 ```
 
-Change the username to root (or whatever username you have set up) and the password to secret under the default header:
+Change the username to root (or whatever username you have set up) and the password to password under the default header:
 
 ```
 default: &default
@@ -153,7 +159,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password: secret
+  password: password
   socket: /tmp/mysql.sock
 ```
 
@@ -161,6 +167,12 @@ default: &default
 
 Ok, we now want to generate a database schema. We are doing this to prove that the app is connecting to the database and to provide a schema for our scaffold to use. 
 Scaffold is a gem that simply produces the generator commands that we need in order to build the application. It uses the database schema in order to do this (this really is just a time saver so we don't have to look at the table names and get the field names etc..). This is the best way to build an application for an existing database that I have found.
+
+Generate the schema:
+
+```
+rake db:schema:dump
+```
 
 Install the gem for schema_to_scafford.
 
@@ -173,8 +185,8 @@ Then once this is installed, we can simply type:
 ```
 scaffold
 ```
-
-It will produce generator commands for us to use. Copy these commands to a text file and input them one at a time into the terminal (inside your applications directory).
+Then select 0 as the path, hit enter and then * for the tables and hit enter.
+It will then produce generator commands for us to use. Copy these commands to a text file and input them one at a time into the terminal (inside your applications directory).
 
 **Create a home controller and index page**
 
@@ -219,6 +231,19 @@ rails server
 ```
 
 You can now navigate to: http://localhost:3000/ and you should see the index page with links to all the other pages.
+
+If you get an error about a javascript include tag, do the following:
+
+```
+vim Gemfile
+```
+And uncomment the line that has 'therubyracer' in i, then run:
+
+```
+bundle install
+```
+
+Now try again.
 
 ==
 ###Getting Production Ready
@@ -265,7 +290,7 @@ default: &default
   encoding: utf8
   pool: 5
   username: root
-  password:
+  password: password
   socket: /tmp/mysql.sock
 
 development:
@@ -280,7 +305,7 @@ production:
   <<: *default
   database: ror_sakila
   username: root
-  password: ''
+  password: password
 ```
 
 **How To Run In Production Mode**
