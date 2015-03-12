@@ -97,8 +97,8 @@ To create the database, we need to login and enter a few commands. Please note, 
 
 ```
 mysql -u root -p
-create database ror_sakila
-use database ror_sakila
+create database ror_sakila;
+use ror_sakila;
 
 source PATH/TO/sakila_dump.sql
 ```
