@@ -332,6 +332,6 @@ vim app/views/actors/index.html.erb
 =
 ###The End
 
-Thanks for reading, hope you learned something. :)
+Thanks for reading.
 
 Darren.
